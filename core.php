@@ -82,24 +82,36 @@ function ztheme_pagenavi($range = 4) {
         if ($max_page > $range) {
             if ($paged < $range) {
                 for ($i = 1; $i <= ($range + 1); $i++) {
-                    $active = ($i == $paged) ? ' bg-primary-500 text-white border-primary-500' : '';
-                    echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium' . $active . ' text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    if ($i == $paged) {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium bg-primary-500 text-white border border-primary-500 rounded-lg">' . $i . '</a>';
+                    } else {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    }
                 }
             } elseif ($paged >= ($max_page - ceil(($range / 2)))) {
                 for ($i = $max_page - $range; $i <= $max_page; $i++) {
-                    $active = ($i == $paged) ? ' bg-primary-500 text-white border-primary-500' : '';
-                    echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium' . $active . ' text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    if ($i == $paged) {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium bg-primary-500 text-white border border-primary-500 rounded-lg">' . $i . '</a>';
+                    } else {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    }
                 }
             } elseif ($paged >= $range && $paged < ($max_page - ceil(($range / 2)))) {
                 for ($i = ($paged - ceil($range / 2)); $i <= ($paged + ceil(($range / 2))); $i++) {
-                    $active = ($i == $paged) ? ' bg-primary-500 text-white border-primary-500' : '';
-                    echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium' . $active . ' text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    if ($i == $paged) {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium bg-primary-500 text-white border border-primary-500 rounded-lg">' . $i . '</a>';
+                    } else {
+                        echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                    }
                 }
             }
         } else {
             for ($i = 1; $i <= $max_page; $i++) {
-                $active = ($i == $paged) ? ' bg-primary-500 text-white border-primary-500' : '';
-                echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium' . $active . ' text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                if ($i == $paged) {
+                    echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium bg-primary-500 text-white border border-primary-500 rounded-lg">' . $i . '</a>';
+                } else {
+                    echo '<a href="' . get_pagenum_link($i) . '" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">' . $i . '</a>';
+                }
             }
         }
         
