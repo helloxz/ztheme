@@ -49,7 +49,6 @@
                                 </div>
                                 <div>
                                     <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors"><?php bloginfo('name'); ?></h1>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block"><?php bloginfo('description'); ?></p>
                                 </div>
                             <?php endif; ?>
                         </a>
