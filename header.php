@@ -36,25 +36,25 @@
     <header id="top" class="sticky top-0 z-40 glass border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="<?php bloginfo('url'); ?>" class="flex items-center gap-3 group">
-                        <?php if (has_custom_logo()): ?>
-                            <?php the_custom_logo(); ?>
-                        <?php else: ?>
-                            <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                                <span class="text-white font-bold text-lg"><?php echo mb_substr(get_bloginfo('name'), 0, 1); ?></span>
-                            </div>
-                            <div>
-                                <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors"><?php bloginfo('name'); ?></h1>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block"><?php bloginfo('description'); ?></p>
-                            </div>
-                        <?php endif; ?>
-                    </a>
-                </div>
-                
-                <!-- Right side: Navigation + Search + Dark mode -->
-                <div class="flex items-center gap-2">
+                <!-- Logo + Navigation (left side) -->
+                <div class="flex items-center gap-8">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="<?php bloginfo('url'); ?>" class="flex items-center gap-3 group">
+                            <?php if (has_custom_logo()): ?>
+                                <?php the_custom_logo(); ?>
+                            <?php else: ?>
+                                <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-lg"><?php echo mb_substr(get_bloginfo('name'), 0, 1); ?></span>
+                                </div>
+                                <div>
+                                    <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors"><?php bloginfo('name'); ?></h1>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block"><?php bloginfo('description'); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                    
                     <!-- PC Navigation -->
                     <nav class="hidden md:block">
                         <?php
@@ -67,9 +67,12 @@
                         ));
                         ?>
                     </nav>
-                    
+                </div>
+                
+                <!-- Right side: Search + Dark mode -->
+                <div class="flex items-center gap-2">
                     <!-- Search (desktop) -->
-                    <div class="hidden md:block ml-2">
+                    <div class="hidden md:block">
                         <form action="/" method="GET" class="relative">
                             <input type="text" name="s" placeholder="搜索..." class="w-48 lg:w-56 px-4 py-2 text-sm bg-slate-100 dark:bg-slate-800 border-0 rounded-lg focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-slate-700 outline-none transition-all">
                             <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary-500 transition-colors">

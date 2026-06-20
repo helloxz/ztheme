@@ -222,16 +222,16 @@ class Ztheme_Mobile_Walker extends Walker_Nav_Menu {
     }
 }
 
-// Add login/logout link to menu
-function ztheme_login_logout_link($items, $args) {
-    if ($args->theme_location === 'header-menu' || $args->theme_location === 'mobile_menu') {
-        if (is_user_logged_in()) {
-            $items .= '<li class="menu-item"><a href="/wp-admin/" class="nav-link">后台管理</a></li>';
-        }
-    }
-    return $items;
-}
-add_filter('wp_nav_menu_items', 'ztheme_login_logout_link', 10, 2);
+// Add login/logout link to menu (disabled)
+// function ztheme_login_logout_link($items, $args) {
+//     if ($args->theme_location === 'header-menu' || $args->theme_location === 'mobile_menu') {
+//         if (is_user_logged_in()) {
+//             $items .= '<li class="menu-item"><a href="/wp-admin/" class="nav-link">后台管理</a></li>';
+//         }
+//     }
+//     return $items;
+// }
+// add_filter('wp_nav_menu_items', 'ztheme_login_logout_link', 10, 2);
 
 // Register widgets
 function ztheme_widgets_init() {
@@ -568,6 +568,10 @@ function ztheme_disable_autosave() {
 // Classic widgets
 add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 add_filter('use_widgets_block_editor', '__return_false');
+
+// Disable Gutenberg editor, use Classic Editor
+add_filter('use_block_editor_for_post', '__return_false');
+add_filter('use_block_editor_for_post_type', '__return_false');
 
 // Header custom code
 function ztheme_header_txt() {
