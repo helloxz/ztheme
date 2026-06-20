@@ -247,36 +247,36 @@ function ztheme_widgets_init() {
     register_sidebar(array(
         'name' => 'Footer Column 1',
         'id'   => 'footer1',
-        'before_widget' => '<div class="mb-4">',
+        'before_widget' => '<div class="footer-widget mb-4">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="text-base font-semibold text-white mb-4">',
+        'before_title'  => '<h4 class="text-base font-semibold text-white mb-3">',
         'after_title'   => '</h4>',
     ));
     
     register_sidebar(array(
         'name' => 'Footer Column 2',
         'id'   => 'footer2',
-        'before_widget' => '<div class="mb-4">',
+        'before_widget' => '<div class="footer-widget mb-4">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="text-base font-semibold text-white mb-4">',
+        'before_title'  => '<h4 class="text-base font-semibold text-white mb-3">',
         'after_title'   => '</h4>',
     ));
     
     register_sidebar(array(
         'name' => 'Footer Column 3',
         'id'   => 'footer3',
-        'before_widget' => '<div class="mb-4">',
+        'before_widget' => '<div class="footer-widget mb-4">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="text-base font-semibold text-white mb-4">',
+        'before_title'  => '<h4 class="text-base font-semibold text-white mb-3">',
         'after_title'   => '</h4>',
     ));
     
     register_sidebar(array(
         'name' => 'Footer Column 4',
         'id'   => 'footer4',
-        'before_widget' => '<div class="mb-4">',
+        'before_widget' => '<div class="footer-widget mb-4">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="text-base font-semibold text-white mb-4">',
+        'before_title'  => '<h4 class="text-base font-semibold text-white mb-3">',
         'after_title'   => '</h4>',
     ));
 }

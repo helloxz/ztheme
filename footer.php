@@ -1,7 +1,5 @@
-        <!-- DEBUG: footer.php start -->
         </div>
     </main>
-    <!-- DEBUG: footer.php after main -->
     
     <!-- Footer -->
     <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 mt-16">
@@ -29,7 +27,7 @@
         <div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
                 <div class="flex flex-wrap items-center gap-3">
-                    <span class="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500 flex-shrink-0">
+                    <span class="hidden sm:flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500 flex-shrink-0">
                         <i class="fa-solid fa-handshake-angle text-xs"></i>
                         赞助商
                     </span>
@@ -114,7 +112,8 @@
         </div>
         
         <!-- Copyright -->
-        <div class="border-t border-slate-700 dark:border-slate-800">
+        <div class="h-px bg-gradient-to-r from-transparent via-slate-600/50 to-transparent"></div>
+        <div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div class="text-center text-sm text-slate-400 dark:text-slate-500">
                     <?php echo of_get_option('footer', 'Copyright &copy; ' . date('Y') . '. Theme by <a href="https://www.xiaoz.me/" target="_blank" class="text-primary-400 hover:text-primary-300">ztheme</a>'); ?>

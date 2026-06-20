@@ -79,6 +79,18 @@
   #content pre .copy-btn {
     @apply transition-opacity duration-200;
   }
+
+  .footer-widget ul {
+    @apply m-0 list-none space-y-1.5 p-0;
+  }
+
+  .footer-widget li {
+    @apply m-0 text-sm leading-6;
+  }
+
+  .footer-widget a {
+    @apply -mx-1 inline-flex rounded-md px-1 py-0.5 text-slate-300 no-underline transition-colors hover:bg-slate-700/50 hover:text-slate-50 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100;
+  }
 }
 
 @layer utilities {
