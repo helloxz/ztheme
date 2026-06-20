@@ -238,7 +238,7 @@ function ztheme_widgets_init() {
     register_sidebar(array(
         'name'          => 'Sidebar',
         'id'            => 'sidebar1',
-        'before_widget' => '<div class="sidebar mb-6">',
+        'before_widget' => '<div class="mb-6">',
         'after_widget'  => '</div>',
         'before_title'  => '<h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 pb-2 border-b border-slate-200 dark:border-slate-700">',
         'after_title'   => '</h3>',
@@ -310,7 +310,7 @@ class Ztheme_Recent_Comments_Widget extends WP_Widget {
     }
     
     public function widget($args, $instance) {
-        echo $args['before_widget'];
+        echo '<div class="card p-6 mb-6">';
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
@@ -330,17 +330,17 @@ class Ztheme_Recent_Comments_Widget extends WP_Widget {
         echo '<ul class="space-y-3">';
         foreach ($recent_comments as $comment) {
             $comment_link = get_comment_link($comment);
-            echo '<li class="flex items-start gap-3">';
-            echo get_avatar($comment->comment_author_email, 32, '', '', array('class' => 'rounded-full'));
+            echo '<li class="flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">';
+            echo get_avatar($comment->comment_author_email, 36, '', '', array('class' => 'rounded-full border-2 border-slate-100 dark:border-slate-600'));
             echo '<div class="min-w-0 flex-1">';
-            echo '<a href="' . esc_url($comment_link) . '" class="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400">' . esc_html($comment->comment_author) . '</a>';
-            echo '<p class="text-xs text-slate-500 dark:text-slate-400 truncate">' . mb_substr($comment->comment_content, 0, 50) . '</p>';
+            echo '<a href="' . esc_url($comment_link) . '" class="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">' . esc_html($comment->comment_author) . '</a>';
+            echo '<p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5 truncate">' . mb_substr($comment->comment_content, 0, 50) . '</p>';
             echo '</div>';
             echo '</li>';
         }
         echo '</ul>';
         
-        echo $args['after_widget'];
+        echo '</div>';
     }
     
     public function form($instance) {
@@ -376,6 +376,83 @@ function ztheme_register_recent_comments_widget() {
     register_widget('Ztheme_Recent_Comments_Widget');
 }
 add_action('widgets_init', 'ztheme_register_recent_comments_widget');
+
+// Recent Posts Widget
+class Ztheme_Recent_Posts_Widget extends WP_Widget {
+    
+    public function __construct() {
+        parent::__construct(
+            'ztheme_recent_posts',
+            '最新文章',
+            array('description' => '显示最新发布的文章')
+        );
+    }
+    
+    public function widget($args, $instance) {
+        echo '<div class="card p-6 mb-6">';
+        
+        if (!empty($instance['title'])) {
+            echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
+        }
+        
+        $number = !empty($instance['number']) ? absint($instance['number']) : 5;
+        
+        $recent_posts = wp_get_recent_posts(array(
+            'numberposts' => $number,
+            'post_status' => 'publish',
+            'orderby' => 'post_date',
+            'order' => 'DESC'
+        ));
+        
+        echo '<ul class="space-y-3">';
+        foreach ($recent_posts as $post) {
+            echo '<li class="flex items-start gap-3 p-2 -mx-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">';
+            
+            if (has_post_thumbnail($post['ID'])) {
+                echo '<a href="' . get_permalink($post['ID']) . '" class="flex-shrink-0">';
+                echo get_the_post_thumbnail($post['ID'], 'thumbnail', array('class' => 'w-12 h-12 rounded-lg object-cover'));
+                echo '</a>';
+            }
+            
+            echo '<div class="min-w-0 flex-1">';
+            echo '<a href="' . get_permalink($post['ID']) . '" class="text-sm text-slate-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors truncate block">' . esc_html($post['post_title']) . '</a>';
+            echo '<span class="text-xs text-slate-400 dark:text-slate-500">' . get_the_date('Y-m-d', $post['ID']) . '</span>';
+            echo '</div>';
+            
+            echo '</li>';
+        }
+        echo '</ul>';
+        
+        echo '</div>';
+    }
+    
+    public function form($instance) {
+        $title = !empty($instance['title']) ? $instance['title'] : '最新文章';
+        $number = !empty($instance['number']) ? absint($instance['number']) : 5;
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">标题:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('number'); ?>">文章数量:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="number" value="<?php echo esc_attr($number); ?>">
+        </p>
+        <?php
+    }
+    
+    public function update($new_instance, $old_instance) {
+        $instance = array();
+        $instance['title'] = !empty($new_instance['title']) ? strip_tags($new_instance['title']) : '';
+        $instance['number'] = !empty($new_instance['number']) ? absint($new_instance['number']) : 5;
+        return $instance;
+    }
+}
+
+function ztheme_register_recent_posts_widget() {
+    register_widget('Ztheme_Recent_Posts_Widget');
+}
+add_action('widgets_init', 'ztheme_register_recent_posts_widget');
 
 // Custom password form
 function ztheme_password_form() {
