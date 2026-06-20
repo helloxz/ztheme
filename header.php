@@ -183,4 +183,11 @@
         </div>
         <?php endif; ?>
 
+        <?php if (!is_home() && !is_front_page() || is_paged()): ?>
+        <!-- Breadcrumbs - Full width bar -->
+        <div class="mb-6 px-4 py-3 bg-slate-100 dark:bg-slate-800/50 rounded-lg">
+            <?php ztheme_breadcrumbs(); ?>
+        </div>
+        <?php endif; ?>
+
         <div class="flex flex-col lg:flex-row gap-8">

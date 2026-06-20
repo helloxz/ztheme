@@ -214,7 +214,7 @@ function ztheme_breadcrumbs() {
     $after = '</span>';
     
     if (!is_home() && !is_front_page() || is_paged()) {
-        echo '<nav class="flex items-center flex-wrap gap-y-1 text-sm mb-6" aria-label="Breadcrumb">';
+        echo '<nav class="flex items-center flex-wrap gap-y-1 text-sm" aria-label="Breadcrumb">';
         echo '<a href="' . home_url() . '" class="inline-flex items-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">' . $home_icon . '首页</a>';
         echo '<span class="mx-1.5">' . $chevron . '</span>';
         

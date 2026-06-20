@@ -3,11 +3,6 @@
 <!-- Main content area -->
 <div class="flex-1 min-w-0">
     
-    <!-- Breadcrumbs -->
-    <div class="mb-6">
-        <?php ztheme_breadcrumbs(); ?>
-    </div>
-    
     <?php if (have_posts()): while (have_posts()): the_post(); ?>
     <article class="card overflow-hidden">
         <!-- Header -->

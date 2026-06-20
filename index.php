@@ -55,13 +55,6 @@
     endif; 
     ?>
     
-    <!-- Breadcrumbs (non-homepage) -->
-    <?php if (!is_home()): ?>
-    <div class="mb-6">
-        <?php ztheme_breadcrumbs(); ?>
-    </div>
-    <?php endif; ?>
-    
     <!-- Article list -->
     <?php
     $args = array('orderby' => 'date');

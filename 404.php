@@ -3,11 +3,6 @@
 <!-- Main content area -->
 <div class="flex-1 min-w-0">
     
-    <!-- Breadcrumbs -->
-    <div class="mb-6">
-        <?php ztheme_breadcrumbs(); ?>
-    </div>
-    
     <div class="card p-12 text-center">
         <div class="mb-8">
             <svg class="w-32 h-32 mx-auto text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
