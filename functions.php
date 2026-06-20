@@ -454,6 +454,84 @@ function ztheme_register_recent_posts_widget() {
 }
 add_action('widgets_init', 'ztheme_register_recent_posts_widget');
 
+// Blogger Recommend Widget
+class Ztheme_Blogger_Recommend_Widget extends WP_Widget {
+    
+    public function __construct() {
+        parent::__construct(
+            'ztheme_blogger_recommend',
+            '博主推荐',
+            array('description' => '显示博主推荐的链接列表')
+        );
+    }
+    
+    public function widget($args, $instance) {
+        echo '<div class="card p-6 mb-6 hidden md:block">';
+        
+        if (!empty($instance['title'])) {
+            echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
+        }
+        
+        if (!empty($instance['content'])) {
+            $lines = explode("\n", trim($instance['content']));
+            $colors = ['bg-blue-500', 'bg-emerald-500', 'bg-purple-500', 'bg-orange-500', 'bg-pink-500'];
+            $color_index = 0;
+            
+            echo '<div class="space-y-2">';
+            foreach ($lines as $line) {
+                $line = trim($line);
+                if (empty($line)) continue;
+                
+                $parts = preg_split('/[｜|]/u', $line, 2);
+                if (count($parts) === 2) {
+                    $name = trim($parts[0]);
+                    $url = esc_url(trim($parts[1]));
+                    if (!empty($name) && !empty($url)) {
+                        $color = $colors[$color_index % count($colors)];
+                        $initial = mb_strtoupper(mb_substr($name, 0, 1));
+                        echo '<a href="' . $url . '" target="_blank" rel="noopener" title="' . esc_attr($name) . '" class="recommend-card">';
+                        echo '<span class="recommend-icon ' . $color . '">' . esc_html($initial) . '</span>';
+                        echo '<span class="recommend-name">' . esc_html($name) . '</span>';
+                        echo '</a>';
+                        $color_index++;
+                    }
+                }
+            }
+            echo '</div>';
+        }
+        
+        echo '</div>';
+    }
+    
+    public function form($instance) {
+        $title = !empty($instance['title']) ? $instance['title'] : '博主推荐';
+        $content = !empty($instance['content']) ? $instance['content'] : '';
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">标题:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>">
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('content'); ?>">链接列表:</label>
+            <textarea class="widefat" rows="6" id="<?php echo $this->get_field_id('content'); ?>" name="<?php echo $this->get_field_name('content'); ?>" placeholder="Google|https://google.com&#10;GitHub｜https://github.com"><?php echo esc_textarea($content); ?></textarea>
+            <small>格式：名称｜URL，一行一个（支持全角｜和半角|）</small>
+        </p>
+        <?php
+    }
+    
+    public function update($new_instance, $old_instance) {
+        $instance = array();
+        $instance['title'] = !empty($new_instance['title']) ? strip_tags($new_instance['title']) : '';
+        $instance['content'] = !empty($new_instance['content']) ? $new_instance['content'] : '';
+        return $instance;
+    }
+}
+
+function ztheme_register_blogger_recommend_widget() {
+    register_widget('Ztheme_Blogger_Recommend_Widget');
+}
+add_action('widgets_init', 'ztheme_register_blogger_recommend_widget');
+
 // Custom password form
 function ztheme_password_form() {
     global $post;
