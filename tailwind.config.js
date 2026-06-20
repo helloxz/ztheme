@@ -94,6 +94,12 @@ module.exports = {
             'blockquote p:last-of-type': {
               marginBottom: '0',
             },
+            'blockquote p:first-of-type::before': {
+              content: 'none',
+            },
+            'blockquote p:last-of-type::after': {
+              content: 'none',
+            },
             img: {
               borderRadius: '0.75rem',
               marginTop: '1.5em',
@@ -126,14 +132,17 @@ module.exports = {
             thead: {
               backgroundColor: '#f1f5f9',
             },
-            'th, td': {
-              padding: '0.75em 1em',
-              borderWidth: '1px',
-              borderColor: '#e2e8f0',
-            },
-            'tbody tr:nth-child(even)': {
-              backgroundColor: '#f8fafc',
-            },
+             'th, td': {
+               padding: '0.75em 1em',
+               borderWidth: '1px',
+               borderColor: '#e2e8f0',
+             },
+             'th:first-child, td:first-child': {
+               paddingLeft: '1em',
+             },
+             'tbody tr:nth-child(even)': {
+               backgroundColor: '#f8fafc',
+             },
             hr: {
               marginTop: '2em',
               marginBottom: '2em',
