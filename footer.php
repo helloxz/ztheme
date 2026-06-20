@@ -1,0 +1,47 @@
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 mt-16">
+        <!-- Footer widgets -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <?php if (is_active_sidebar('footer1')): ?>
+                <div>
+                    <?php dynamic_sidebar('footer1'); ?>
+                </div>
+                <?php endif; ?>
+                
+                <?php if (is_active_sidebar('footer2')): ?>
+                <div>
+                    <?php dynamic_sidebar('footer2'); ?>
+                </div>
+                <?php endif; ?>
+                
+                <?php if (is_active_sidebar('footer3')): ?>
+                <div>
+                    <?php dynamic_sidebar('footer3'); ?>
+                </div>
+                <?php endif; ?>
+                
+                <?php if (is_active_sidebar('footer4')): ?>
+                <div>
+                    <?php dynamic_sidebar('footer4'); ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="border-t border-slate-700 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="text-center text-sm text-slate-400 dark:text-slate-500">
+                    <?php echo of_get_option('footer', 'Copyright &copy; ' . date('Y') . '. Theme by <a href="https://www.xiaoz.me/" target="_blank" class="text-primary-400 hover:text-primary-300">ztheme</a>'); ?>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <?php wp_footer(); ?>
+</body>
+</html>

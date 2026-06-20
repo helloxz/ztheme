@@ -1,0 +1,12 @@
+{
+  "name": "ztheme",
+  "version": "1.0.0",
+  "description": "A modern WordPress theme with Tailwind CSS and Alpine.js",
+  "scripts": {
+    "build": "npx tailwindcss -i src/input.css -o dist/styles.css --minify",
+    "watch": "npx tailwindcss -i src/input.css -o dist/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
