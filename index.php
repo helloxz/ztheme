@@ -70,70 +70,75 @@
     <?php if (have_posts()): ?>
     <div class="space-y-4">
         <?php while (have_posts()): the_post(); ?>
-        <article class="card overflow-hidden">
-            <div class="p-4 md:px-5 md:py-4 min-h-[11.5rem] flex flex-col">
-                    <!-- Sticky badge -->
-                    <?php if (is_sticky()): ?>
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 mb-2">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.828 3.414a2 2 0 012.828 0l.586.586a2 2 0 002.828 0l.586-.586a2 2 0 012.828 2.828l-.586.586a2 2 0 000 2.828l.586.586a2 2 0 01-2.828 2.828l-.586-.586a2 2 0 00-2.828 0l-.586.586a2 2 0 01-2.828-2.828l.586-.586a2 2 0 000-2.828l-.586-.586a2 2 0 010-2.828z"/>
-                        </svg>
-                        置顶
-                    </span>
-                    <?php endif; ?>
-                    
-                    <!-- Title -->
-                    <h2 class="text-base md:text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2 leading-snug">
-                        <a href="<?php the_permalink(); ?>" class="block truncate md:whitespace-normal md:overflow-visible md:text-ellipsis hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-                            <?php the_title(); ?>
-                        </a>
-                    </h2>
-                    
-                    <!-- Meta -->
-                    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
-                        <span class="flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                            </svg>
-                            <?php ztheme_category(); ?>
-                        </span>
-                        <span class="flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                            <?php the_time('Y-m-d'); ?>
-                        </span>
-                        <span class="flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                            </svg>
-                            <?php comments_number('0评论', '1评论', '%评论'); ?>
-                        </span>
-                        <span class="hidden sm:flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                            <?php ztheme_get_post_views($post->ID); ?>
-                        </span>
-                    </div>
-                    
-                    <!-- Excerpt -->
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-6 mb-3 line-clamp-2 min-h-[3rem]">
-                        <?php the_content(); ?>
-                    </p>
-                    
-                    <!-- Read more -->
-                    <div class="mt-auto">
-                        <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
-                            阅读全文
-                            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
+        <?php if (is_sticky()): ?>
+        <!-- Sticky post -->
+        <article class="card-sticky overflow-hidden">
+            <div class="p-4 md:px-5 md:py-3 flex items-center gap-3">
+                <span class="sticky-badge">置顶</span>
+                <h2 class="text-base md:text-lg font-semibold text-slate-800 dark:text-slate-100 leading-snug flex-1 min-w-0">
+                    <a href="<?php the_permalink(); ?>" class="block truncate hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                        <?php the_title(); ?>
+                    </a>
+                </h2>
             </div>
         </article>
+        <?php else: ?>
+        <!-- Normal post -->
+        <article class="card overflow-hidden">
+            <div class="p-4 md:px-5 md:py-4 min-h-[11.5rem] flex flex-col">
+                <!-- Title -->
+                <h2 class="text-base md:text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2 leading-snug">
+                    <a href="<?php the_permalink(); ?>" class="block truncate md:whitespace-normal md:overflow-visible md:text-ellipsis hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                        <?php the_title(); ?>
+                    </a>
+                </h2>
+                
+                <!-- Meta -->
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                        </svg>
+                        <?php ztheme_category(); ?>
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <?php the_time('Y-m-d'); ?>
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                        <?php comments_number('0评论', '1评论', '%评论'); ?>
+                    </span>
+                    <span class="hidden sm:flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                        <?php ztheme_get_post_views($post->ID); ?>
+                    </span>
+                </div>
+                
+                <!-- Excerpt -->
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-6 mb-3 line-clamp-2 min-h-[3rem]">
+                    <?php the_content(); ?>
+                </p>
+                
+                <!-- Read more -->
+                <div class="mt-auto">
+                    <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
+                        阅读全文
+                        <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+        <?php endif; ?>
         <?php endwhile; ?>
     </div>
     
