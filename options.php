@@ -216,6 +216,14 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/|map-pin|purple
     );
     
     $options[] = array(
+        'name' => __('X (Twitter)', 'ztheme'),
+        'desc' => __('填写X用户ID，例如：xiaozblog', 'ztheme'),
+        'id'   => 'twitter',
+        'std'  => '',
+        'type' => 'text',
+    );
+    
+    $options[] = array(
         'name' => __('QQ群链接', 'ztheme'),
         'desc' => __('填写QQ群链接', 'ztheme'),
         'id'   => 'qq_group',

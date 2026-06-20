@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     <title><?php ztheme_title(); ?></title>
     <?php ztheme_seo(); ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/dist/styles.css?v=<?php echo wp_get_theme()->get('Version'); ?>">
     <?php if (!empty(of_get_option('analysis'))): ?>
     <script><?php echo of_get_option('analysis'); ?></script>
