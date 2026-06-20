@@ -1,5 +1,7 @@
 <?php get_header(); ?>
+<!-- DEBUG: index.php start -->
 
+<!-- DEBUG: index.php main content start -->
 <!-- Main content area -->
 <div class="flex-1 min-w-0">
     
@@ -158,7 +160,12 @@
     <?php endif; ?>
     <?php wp_reset_query(); ?>
     
+
+<!-- DEBUG: index.php main content end -->
 </div>
 
+<!-- DEBUG: index.php before get_sidebar -->
 <?php get_sidebar(); ?>
+<!-- DEBUG: index.php after get_sidebar -->
+<!-- DEBUG: index.php before get_footer -->
 <?php get_footer(); ?>

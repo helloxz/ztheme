@@ -1,5 +1,7 @@
+        <!-- DEBUG: footer.php start -->
         </div>
     </main>
+    <!-- DEBUG: footer.php after main -->
     
     <!-- Footer -->
     <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 mt-16">
