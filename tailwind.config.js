@@ -101,6 +101,9 @@ module.exports = {
               content: 'none',
             },
             img: {
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               borderRadius: '0.75rem',
               marginTop: '1.5em',
               marginBottom: '1.5em',
