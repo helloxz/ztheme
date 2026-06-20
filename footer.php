@@ -5,6 +5,52 @@
     
     <!-- Footer -->
     <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 mt-16">
+        <!-- Sponsors (homepage only) -->
+        <?php if (is_home() && !is_paged()): ?>
+        <?php
+        $home_sponsors = of_get_option('home_sponsors');
+        $sponsor_lines = !empty($home_sponsors) ? array_filter(explode("\n", trim($home_sponsors))) : array();
+        $sponsor_items = array();
+
+        foreach ($sponsor_lines as $sponsor_line) {
+            $sponsor_parts = array_map('trim', explode('|', $sponsor_line));
+            if (count($sponsor_parts) < 3 || empty($sponsor_parts[0]) || empty($sponsor_parts[1]) || empty($sponsor_parts[2])) {
+                continue;
+            }
+            $sponsor_items[] = array(
+                'name'  => $sponsor_parts[0],
+                'link'  => $sponsor_parts[1],
+                'image' => $sponsor_parts[2],
+            );
+        }
+
+        if (!empty($sponsor_items)):
+        ?>
+        <div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="flex items-center gap-1.5 text-sm text-slate-400 dark:text-slate-500 flex-shrink-0">
+                        <i class="fa-solid fa-handshake-angle text-xs"></i>
+                        赞助商
+                    </span>
+                    <?php foreach ($sponsor_items as $sponsor_item): ?>
+                    <a href="<?php echo esc_url($sponsor_item['link']); ?>"
+                       target="_blank"
+                       rel="nofollow noopener"
+                       class="inline-flex h-12 w-32 items-center justify-center rounded-lg border border-slate-600/70 bg-slate-700/40 px-3 py-2 hover:border-slate-500 hover:bg-slate-700/70 transition-colors"
+                       title="<?php echo esc_attr($sponsor_item['name']); ?>">
+                        <img src="<?php echo esc_url($sponsor_item['image']); ?>"
+                             alt="<?php echo esc_attr($sponsor_item['name']); ?>"
+                             class="max-h-8 max-w-full object-contain">
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="h-px bg-gradient-to-r from-transparent via-slate-600/50 to-transparent"></div>
+        </div>
+        <?php endif; ?>
+        <?php endif; ?>
+
         <!-- Friend links (homepage only) -->
         <?php if (is_home() && !is_paged()): ?>
         <?php

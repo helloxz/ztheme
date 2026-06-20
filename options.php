@@ -112,6 +112,14 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/|map-pin|purple
         'type' => 'textarea',
     );
     
+    $options[] = array(
+        'name' => __('首页赞助商', 'ztheme'),
+        'desc' => __('格式：名称|链接|图片URL，每行一个。仅首页底部友情链接上方显示', 'ztheme'),
+        'id'   => 'home_sponsors',
+        'std'  => '',
+        'type' => 'textarea',
+    );
+
     // Category settings (reserved)
     $options[] = array(
         'name' => __('首页分类目录1', 'ztheme'),
