@@ -6,3 +6,6 @@ Thumbs.db
 *.log
 *.tmp
 *.temp
+
+# 自定义头部代码（包含统计和广告脚本）
+extend/header.txt

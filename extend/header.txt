@@ -1,5 +1,0 @@
-<script defer src="https://tj.rss.ink/script.js" data-website-id="cf7103ab-bd36-4af8-b675-e137ed7ca1cd"></script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1198592826613859"
-     crossorigin="anonymous"></script>
-     
