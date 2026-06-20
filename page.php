@@ -4,6 +4,9 @@
 <div class="flex-1 min-w-0">
     
     <?php if (have_posts()): while (have_posts()): the_post(); ?>
+    
+    <?php ztheme_render_ad('gg6'); ?>
+    
     <article class="card overflow-hidden">
         <!-- Header -->
         <div class="p-6 pb-0 md:p-8 md:pb-0">
@@ -54,6 +57,10 @@
         </div>
         <?php endif; ?>
     </article>
+    
+    <div class="mt-8">
+        <?php ztheme_render_ad('ad_single_bottom'); ?>
+    </div>
     
     <!-- Comments -->
     <div class="mt-8">

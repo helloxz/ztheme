@@ -4,6 +4,9 @@
 <div class="flex-1 min-w-0">
     
     <?php if (have_posts()): while (have_posts()): the_post(); ?>
+    
+    <?php ztheme_render_ad('gg6'); ?>
+    
     <article class="card overflow-hidden">
         <!-- Header -->
         <div class="p-6 pb-0 md:p-8 md:pb-0">
@@ -53,13 +56,6 @@
                 </span>
                 <?php endif; ?>
             </div>
-            
-            <!-- Ad below title -->
-            <?php if (!empty(of_get_option('gg6'))): ?>
-            <div class="mb-6">
-                <?php echo of_get_option('gg6'); ?>
-            </div>
-            <?php endif; ?>
         </div>
         
         <!-- Content -->
@@ -105,13 +101,6 @@
         </div>
         <?php endif; ?>
         
-        <!-- Ad above donate -->
-        <?php if (!empty(of_get_option('ad_single_bottom'))): ?>
-        <div class="px-6 md:px-8 py-4 border-t border-slate-100 dark:border-slate-700">
-            <?php echo of_get_option('ad_single_bottom'); ?>
-        </div>
-        <?php endif; ?>
-        
         <!-- Previous/Next -->
         <div class="px-6 md:px-8 py-4 border-t border-slate-100 dark:border-slate-700">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -151,7 +140,7 @@
             </div>
         </div>
         
-        <!-- Like & Donate -->
+        <!-- Like -->
         <div class="px-6 md:px-8 py-6 border-t border-slate-100 dark:border-slate-700">
             <div class="flex items-center justify-center gap-4">
                 <?php
@@ -174,18 +163,13 @@
                     </svg>
                     赞 <span x-text="count"></span>
                 </button>
-                
-                <?php if (!empty(of_get_option('donate'))): ?>
-                <button @click="$dispatch('show-donate')" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-medium transition-all duration-300 transform hover:scale-105">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    打赏
-                </button>
-                <?php endif; ?>
             </div>
         </div>
     </article>
+    
+    <div class="mt-8">
+        <?php ztheme_render_ad('ad_single_bottom'); ?>
+    </div>
     
     <!-- Comments -->
     <div class="mt-8">
@@ -194,28 +178,6 @@
     
     <?php endwhile; endif; ?>
 </div>
-
-<!-- Donate modal -->
-<?php if (!empty(of_get_option('donate'))): ?>
-<div x-data="{ open: false }" 
-     @show-donate.window="open = true"
-     x-show="open"
-     x-transition:enter="transition ease-out duration-200"
-     x-transition:enter-start="opacity-0"
-     x-transition:enter-end="opacity-100"
-     x-transition:leave="transition ease-in duration-150"
-     x-transition:leave-start="opacity-100"
-     x-transition:leave-end="opacity-0"
-     x-cloak
-     class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-     @click.self="open = false">
-    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm mx-4 shadow-xl">
-        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 text-center">请作者喝杯咖啡吧！</h3>
-        <img src="<?php echo of_get_option('donate'); ?>" alt="打赏" class="w-full rounded-lg">
-        <button @click="open = false" class="mt-4 w-full btn-outline">关闭</button>
-    </div>
-</div>
-<?php endif; ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

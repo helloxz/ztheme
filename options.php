@@ -246,8 +246,8 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
     );
     
     $options[] = array(
-        'name' => __('文章页标题下面的广告', 'ztheme'),
-        'desc' => __('使用HTML格式添加，建议尺寸800x70', 'ztheme'),
+        'name' => __('文章页顶部广告', 'ztheme'),
+        'desc' => __('格式：每3行为一组（链接URL、图片URL、广告名称），留空不显示', 'ztheme'),
         'id'   => 'gg6',
         'std'  => '',
         'type' => 'textarea',
@@ -262,19 +262,11 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
     );
     
     $options[] = array(
-        'name' => __('文章页打赏上方的广告', 'ztheme'),
-        'desc' => __('填写HTML格式的图片链接，建议尺寸800x70', 'ztheme'),
+        'name' => __('文章页底部广告', 'ztheme'),
+        'desc' => __('格式：每3行为一组（链接URL、图片URL、广告名称），留空不显示', 'ztheme'),
         'id'   => 'ad_single_bottom',
         'std'  => '',
         'type' => 'textarea',
-    );
-    
-    $options[] = array(
-        'name' => __('打赏支持', 'ztheme'),
-        'desc' => __('填写收款二维码图片地址', 'ztheme'),
-        'id'   => 'donate',
-        'std'  => '',
-        'type' => 'text',
     );
     
     // SMTP Settings

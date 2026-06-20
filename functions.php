@@ -721,6 +721,30 @@ add_filter('use_widgets_block_editor', '__return_false');
 add_filter('use_block_editor_for_post', '__return_false');
 add_filter('use_block_editor_for_post_type', '__return_false');
 
+// Render ad from option (format: URL\nimgurl\n名称)
+function ztheme_render_ad($option_key) {
+    $raw = trim(of_get_option($option_key));
+    if (empty($raw)) return;
+
+    $lines = array_filter(array_map('trim', explode("\n", $raw)));
+    if (count($lines) < 3) return;
+
+    $link_url = esc_url($lines[0]);
+    $img_url  = esc_url($lines[1]);
+    $name     = esc_html($lines[2]);
+
+    echo '<a href="' . $link_url . '" target="_blank" rel="nofollow noopener" '
+       . 'class="block mb-6 rounded-xl overflow-hidden border border-slate-200/60 dark:border-slate-700/60 '
+       . 'hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 group">';
+    echo '<div class="relative">';
+    echo '<img src="' . $img_url . '" alt="' . $name . '" class="w-full h-auto object-cover" loading="lazy">';
+    echo '<span class="absolute bottom-2 right-2 px-2.5 py-1 text-xs font-medium '
+       . 'bg-black/50 text-white/90 rounded-md backdrop-blur-sm '
+       . 'group-hover:bg-primary-500/80 transition-colors duration-300">' . $name . '</span>';
+    echo '</div>';
+    echo '</a>';
+}
+
 // Header custom code
 function ztheme_header_txt() {
     $header_txt_path = get_template_directory() . '/extend/header.txt';
