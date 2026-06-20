@@ -165,8 +165,6 @@ module.exports = {
           css: {
             blockquote: {
               backgroundColor: '#0f172a',
-              borderLeftColor: '#60a5fa',
-              borderColor: '#334155',
             },
             'li::marker': {
               color: '#64748b',

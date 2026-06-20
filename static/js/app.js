@@ -122,7 +122,7 @@ function initResponsiveTables() {
     document.querySelectorAll('#content table').forEach(table => {
         if (!table.parentNode.classList.contains('overflow-x-auto')) {
             const wrapper = document.createElement('div');
-            wrapper.className = 'overflow-x-auto my-4 rounded-lg';
+            wrapper.className = 'overflow-x-auto my-4 rounded-lg border border-slate-200 dark:border-slate-700';
             table.parentNode.insertBefore(wrapper, table);
             wrapper.appendChild(table);
             table.classList.add('w-full', 'text-sm');

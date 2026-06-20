@@ -74,10 +74,6 @@
   #content pre code.hljs {
     @apply bg-transparent p-0 text-sm leading-relaxed;
   }
-
-  #content blockquote {
-    @apply border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 rounded-r-xl;
-  }
   
   /* Copy button */
   #content pre .copy-btn {
