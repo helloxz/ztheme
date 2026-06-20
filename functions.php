@@ -530,14 +530,7 @@ add_filter('get_avatar', 'ztheme_gravatar_cdn', 10, 3);
 // Restore link manager
 add_filter('pre_option_link_manager_enabled', '__return_true');
 
-// Show links only on homepage
-function ztheme_friend_links($output) {
-    if (!is_home() || is_paged()) {
-        $output = "";
-    }
-    return $output;
-}
-add_filter('wp_list_bookmarks', 'ztheme_friend_links');
+
 
 // Colorful tag cloud
 function ztheme_color_cloud($text) {
