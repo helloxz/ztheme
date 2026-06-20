@@ -41,7 +41,7 @@
         </div>
         
         <!-- Content -->
-        <div id="content" class="px-6 md:px-8 py-4">
+        <div id="content" class="px-6 md:px-8 py-4 prose prose-slate dark:prose-invert max-w-none">
             <?php the_content(); ?>
         </div>
         

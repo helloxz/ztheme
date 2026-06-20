@@ -196,14 +196,15 @@ add_action('get_header', 'ztheme_set_post_views');
 
 // Breadcrumbs
 function ztheme_breadcrumbs() {
-    $delimiter = '>';
-    $before = '<span class="text-primary-500 dark:text-primary-400 font-medium">';
+    $chevron = '<svg class="w-3.5 h-3.5 text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
+    $home_icon = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>';
+    $before = '<span class="text-slate-400 dark:text-slate-500 font-medium">';
     $after = '</span>';
     
     if (!is_home() && !is_front_page() || is_paged()) {
-        echo '<nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6" aria-label="Breadcrumb">';
-        echo '<a href="' . home_url() . '" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">首页</a>';
-        echo '<span>' . $delimiter . '</span>';
+        echo '<nav class="flex items-center flex-wrap gap-y-1 text-sm mb-6" aria-label="Breadcrumb">';
+        echo '<a href="' . home_url() . '" class="inline-flex items-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">' . $home_icon . '首页</a>';
+        echo '<span class="mx-1.5">' . $chevron . '</span>';
         
         if (is_category()) {
             global $wp_query;
@@ -212,21 +213,24 @@ function ztheme_breadcrumbs() {
             $thisCat = get_category($thisCat);
             $parentCat = get_category($thisCat->parent);
             if ($thisCat->parent != 0) {
-                $cat_code = get_category_parents($parentCat, TRUE, ' ' . $delimiter . ' ');
-                echo str_replace('<a', '<a class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"', $cat_code);
+                $cat_code = get_category_parents($parentCat, TRUE, ' <span class="mx-1.5">' . $chevron . '</span> ');
+                $cat_code = str_replace('<a', '<a class="text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"', $cat_code);
+                echo $cat_code;
             }
             echo $before . single_cat_title('', false) . $after;
         } elseif (is_single()) {
             if (get_post_type() != 'post') {
                 $post_type = get_post_type_object(get_post_type());
                 $slug = $post_type->rewrite;
-                echo '<a href="' . home_url() . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a> ' . $delimiter . ' ';
+                echo '<a href="' . home_url() . '/' . $slug['slug'] . '/" class="text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">' . $post_type->labels->singular_name . '</a>';
+                echo '<span class="mx-1.5">' . $chevron . '</span>';
                 echo $before . get_the_title() . $after;
             } else {
                 $cat = get_the_category();
                 $cat = $cat[0];
-                $cat_code = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-                echo str_replace('<a', '<a class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"', $cat_code);
+                $cat_code = get_category_parents($cat, TRUE, ' <span class="mx-1.5">' . $chevron . '</span> ');
+                $cat_code = str_replace('<a', '<a class="text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"', $cat_code);
+                echo $cat_code;
                 echo $before . get_the_title() . $after;
             }
         } elseif (is_page()) {
@@ -245,7 +249,7 @@ function ztheme_breadcrumbs() {
         
         if (get_query_var('paged')) {
             if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
-                echo ' <span class="text-slate-400">(第 ' . get_query_var('paged') . ' 页)</span>';
+                echo ' <span class="text-slate-400 ml-1">(第 ' . get_query_var('paged') . ' 页)</span>';
             }
         }
         

@@ -68,7 +68,7 @@
         </div>
         
         <!-- Content -->
-        <div id="content" class="px-6 md:px-8 py-4">
+        <div id="content" class="px-6 md:px-8 py-4 prose prose-slate dark:prose-invert max-w-none">
             <!-- Description notice -->
             <?php if (!empty(of_get_option('single_description'))): ?>
             <div class="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">

@@ -31,7 +31,7 @@
   }
   
   .card:hover {
-    @apply shadow-card-hover -translate-y-0.5;
+    @apply shadow-card-hover;
   }
   
   .btn-primary {
@@ -52,6 +52,20 @@
   
   .nav-link.active {
     @apply text-primary-500 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20;
+  }
+  
+  /* Code block styles */
+  #content pre {
+    @apply bg-slate-800 dark:bg-slate-900 rounded-xl p-4 my-6 overflow-x-auto relative;
+  }
+  
+  #content pre code.hljs {
+    @apply bg-transparent p-0 text-sm leading-relaxed;
+  }
+  
+  /* Copy button */
+  #content pre .copy-btn {
+    @apply transition-opacity duration-200;
   }
 }
 
