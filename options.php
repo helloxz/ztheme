@@ -104,11 +104,11 @@ function optionsframework_options() {
     
     $options[] = array(
         'name' => __('首页推荐选项', 'ztheme'),
-        'desc' => __('格式：标题|描述|链接|Heroicon图标名|颜色，每行一个。图标名参考 heroicons.com，颜色可选：blue/green/purple/orange/red/teal', 'ztheme'),
+        'desc' => __('格式：标题|描述|链接，每行一个。前端使用固定图标，仅桌面端显示；旧格式中多出的字段会自动忽略', 'ztheme'),
         'id'   => 'home_recommend',
-        'std'  => 'ImgURL|开源免费的图床程序|https://imgurl.org/|photo|blue
-wget.ovh|软件库，只做软件搬运工|https://wget.ovh/|arrow-down-tray|green
-IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/|map-pin|purple',
+        'std'  => 'ImgURL|开源免费的图床程序|https://imgurl.org/
+wget.ovh|软件库，只做软件搬运工|https://wget.ovh/
+IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
         'type' => 'textarea',
     );
     

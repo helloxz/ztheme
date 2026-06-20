@@ -4,55 +4,28 @@
 <!-- DEBUG: index.php main content start -->
 <!-- Main content area -->
 <div class="flex-1 min-w-0">
-    
-    <!-- Recommended items -->
-    <?php 
+    <?php
+    $recommend_items = array();
     $recommend = of_get_option('home_recommend');
-    if (!empty($recommend)): 
+    if (!empty($recommend)) {
         $items = array_filter(explode("\n", trim($recommend)));
-        if (!empty($items)):
-    ?>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        <?php foreach ($items as $item): 
+        foreach ($items as $item) {
             $parts = array_map('trim', explode('|', $item));
-            if (count($parts) >= 3):
-                $title = $parts[0];
-                $desc = $parts[1];
-                $link = $parts[2];
-                $icon = isset($parts[3]) ? $parts[3] : 'link';
-                $color = isset($parts[4]) ? $parts[4] : 'blue';
-                
-                $color_classes = array(
-                    'blue'   => 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
-                    'green'  => 'from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700',
-                    'purple' => 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
-                    'orange' => 'from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
-                    'red'    => 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700',
-                    'teal'   => 'from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700',
+            if (count($parts) >= 3) {
+                $recommend_items[] = array(
+                    'title' => $parts[0],
+                    'desc'  => $parts[1],
+                    'link'  => $parts[2],
                 );
-                $gradient = isset($color_classes[$color]) ? $color_classes[$color] : $color_classes['blue'];
-        ?>
-        <a href="<?php echo esc_url($link); ?>" rel="nofollow" target="_blank" class="group block bg-gradient-to-br <?php echo $gradient; ?> rounded-xl p-5 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
-                    </svg>
-                </div>
-                <div class="min-w-0 flex-1">
-                    <h3 class="font-semibold text-lg mb-1 group-hover:translate-x-1 transition-transform"><?php echo esc_html($title); ?></h3>
-                    <p class="text-sm text-white/80"><?php echo esc_html($desc); ?></p>
-                </div>
-            </div>
-        </a>
-        <?php 
-            endif;
-        endforeach; 
-        ?>
-    </div>
-    <?php 
-        endif;
-    endif; 
+            }
+        }
+    }
+
+    $recommend_card_styles = array(
+        'border border-blue-200/70 bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:border-blue-900/60 dark:from-blue-950/40 dark:via-slate-800 dark:to-cyan-950/30',
+        'border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:border-emerald-900/60 dark:from-emerald-950/35 dark:via-slate-800 dark:to-teal-950/30',
+        'border border-violet-200/70 bg-gradient-to-br from-violet-50 via-white to-indigo-50 dark:border-violet-900/60 dark:from-violet-950/35 dark:via-slate-800 dark:to-indigo-950/30',
+    );
     ?>
     
     <!-- Article list -->
@@ -63,9 +36,13 @@
     ?>
     
     <?php if (have_posts()): ?>
-    <div class="space-y-4">
-        <?php while (have_posts()): the_post(); ?>
-        <?php if (is_sticky()): ?>
+    <?php
+    $sticky_posts_html = array();
+    $regular_posts_html = array();
+    while (have_posts()): the_post();
+        ob_start();
+        if (is_sticky()):
+    ?>
         <!-- Sticky post -->
         <article class="card-sticky overflow-hidden">
             <div class="p-4 md:px-5 md:py-3 flex items-center gap-3">
@@ -133,8 +110,45 @@
                 </div>
             </div>
         </article>
+        <?php endif;
+        $article_html = ob_get_clean();
+        if (is_sticky()) {
+            $sticky_posts_html[] = $article_html;
+        } else {
+            $regular_posts_html[] = $article_html;
+        }
+    endwhile;
+    ?>
+    <div class="space-y-4">
+        <?php foreach ($sticky_posts_html as $sticky_post_html): ?>
+            <?php echo $sticky_post_html; ?>
+        <?php endforeach; ?>
+
+        <?php if (!empty($recommend_items)): ?>
+        <section class="hidden lg:block py-2" aria-label="我的产品">
+            <div class="grid grid-cols-3 gap-4">
+                <?php foreach ($recommend_items as $index => $recommend_item):
+                    $card_style = $recommend_card_styles[$index % count($recommend_card_styles)];
+                ?>
+                <a href="<?php echo esc_url($recommend_item['link']); ?>" rel="nofollow" target="_blank" class="group block rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 <?php echo esc_attr($card_style); ?>">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/80 text-slate-700 shadow-sm ring-1 ring-slate-200/70 dark:bg-slate-900/70 dark:text-slate-200 dark:ring-slate-700/70">
+                            <i class="fa-solid fa-cube text-lg"></i>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <h3 class="text-lg font-semibold text-slate-800 transition-colors group-hover:text-primary-600 dark:text-slate-100 dark:group-hover:text-primary-400"><?php echo esc_html($recommend_item['title']); ?></h3>
+                            <p class="mt-1.5 text-[13px] leading-5 text-slate-600 dark:text-slate-300"><?php echo esc_html($recommend_item['desc']); ?></p>
+                        </div>
+                    </div>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </section>
         <?php endif; ?>
-        <?php endwhile; ?>
+
+        <?php foreach ($regular_posts_html as $regular_post_html): ?>
+            <?php echo $regular_post_html; ?>
+        <?php endforeach; ?>
     </div>
     
     <!-- Pagination -->
