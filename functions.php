@@ -310,7 +310,7 @@ class Ztheme_Recent_Comments_Widget extends WP_Widget {
     }
     
     public function widget($args, $instance) {
-        echo '<div class="card p-6 mb-6">';
+        echo '<div class="card p-6 mb-6 hidden md:block">';
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
@@ -389,7 +389,7 @@ class Ztheme_Recent_Posts_Widget extends WP_Widget {
     }
     
     public function widget($args, $instance) {
-        echo '<div class="card p-6 mb-6">';
+        echo '<div class="card p-6 mb-6 hidden md:block">';
         
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
