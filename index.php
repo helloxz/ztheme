@@ -71,16 +71,7 @@
     <div class="space-y-4">
         <?php while (have_posts()): the_post(); ?>
         <article class="card overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-                <!-- Thumbnail -->
-                <div class="md:w-44 lg:w-52 flex-shrink-0">
-                    <div class="aspect-[4/3] md:aspect-auto md:h-full">
-                        <?php ztheme_thumb(); ?>
-                    </div>
-                </div>
-                
-                <!-- Content -->
-                <div class="flex-1 p-4">
+            <div class="p-4 md:px-5 md:py-4 min-h-[11.5rem] flex flex-col">
                     <!-- Sticky badge -->
                     <?php if (is_sticky()): ?>
                     <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 mb-2">
@@ -92,14 +83,14 @@
                     <?php endif; ?>
                     
                     <!-- Title -->
-                    <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">
-                        <a href="<?php the_permalink(); ?>" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                    <h2 class="text-base md:text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2 leading-snug">
+                        <a href="<?php the_permalink(); ?>" class="block truncate md:whitespace-normal md:overflow-visible md:text-ellipsis hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                             <?php the_title(); ?>
                         </a>
                     </h2>
                     
                     <!-- Meta -->
-                    <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
                         <span class="flex items-center gap-1">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
@@ -128,18 +119,19 @@
                     </div>
                     
                     <!-- Excerpt -->
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3 line-clamp-2">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-6 mb-3 line-clamp-2 min-h-[3rem]">
                         <?php the_content(); ?>
                     </p>
                     
                     <!-- Read more -->
-                    <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
-                        阅读全文
-                        <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
+                    <div class="mt-auto">
+                        <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
+                            阅读全文
+                            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
             </div>
         </article>
         <?php endwhile; ?>
