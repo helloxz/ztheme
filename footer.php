@@ -69,8 +69,7 @@
                     </span>
                     <?php foreach ($bookmarks as $bookmark): ?>
                     <a href="<?php echo esc_url($bookmark->link_url); ?>" 
-                       target="_blank" 
-                       rel="nofollow noopener"
+                       target="_blank"
                        class="px-3 py-1 text-xs text-slate-300 dark:text-slate-400 bg-slate-700/50 dark:bg-slate-800/80 hover:bg-slate-600/50 dark:hover:bg-slate-700/80 hover:text-white rounded-full transition-colors">
                         <?php echo esc_html($bookmark->link_name); ?>
                     </a>
