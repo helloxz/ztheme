@@ -686,6 +686,32 @@ function ztheme_get_ip() {
 }
 add_action('init', 'ztheme_get_ip');
 
+// UA block
+add_action('template_redirect', 'ztheme_ua_block');
+function ztheme_ua_block() {
+    if (is_admin() || wp_doing_ajax()) return;
+
+    $ua_block_list = of_get_option('ua_block');
+    if (empty($ua_block_list)) return;
+
+    $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    if (empty($ua)) return;
+
+    $keywords = array_filter(array_map('trim', explode("\n", str_replace("\r\n", "\n", $ua_block_list))));
+    foreach ($keywords as $keyword) {
+        if ($keyword !== '' && stripos($ua, $keyword) !== false) {
+            status_header(403);
+            $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+            $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+            $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+            $current_url = esc_url($protocol . '://' . $host . $uri);
+            $html = file_get_contents(get_template_directory() . '/403.html');
+            echo str_replace('{{URL}}', $current_url, $html);
+            exit;
+        }
+    }
+}
+
 // Search keyword ban
 add_action('admin_init', 'ztheme_search_ban_key_init');
 function ztheme_search_ban_key_init() {

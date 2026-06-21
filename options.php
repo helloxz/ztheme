@@ -318,5 +318,19 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
         'options' => $is_smtp_arr,
     );
     
+    // Other Settings
+    $options[] = array(
+        'name' => '其它设置',
+        'type' => 'heading',
+    );
+    
+    $options[] = array(
+        'name' => __('UA屏蔽', 'ztheme'),
+        'desc' => __('每行一个UA关键词，不区分大小写匹配，命中的访客将返回403。留空则不启用。', 'ztheme'),
+        'id'   => 'ua_block',
+        'std'  => '',
+        'type' => 'textarea',
+    );
+    
     return $options;
 }
