@@ -253,13 +253,7 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
         'type' => 'textarea',
     );
     
-    $options[] = array(
-        'name' => __('文章页标题下面的描述', 'ztheme'),
-        'desc' => __('留空则不显示', 'ztheme'),
-        'id'   => 'single_description',
-        'std'  => '',
-        'type' => 'text',
-    );
+    
     
     $options[] = array(
         'name' => __('文章页底部广告', 'ztheme'),
@@ -272,9 +266,17 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
     $options[] = array(
         'name' => __('首页广告', 'ztheme'),
         'desc' => __('格式：每3行为一组（链接URL、图片URL、广告名称），留空不显示', 'ztheme'),
-        'id'   => 'home_ad',
+        'id'   => 'home_gg',
         'std'  => '',
         'type' => 'textarea',
+    );
+
+    $options[] = array(
+        'name' => __('文章页标题下面的描述', 'ztheme'),
+        'desc' => __('留空则不显示', 'ztheme'),
+        'id'   => 'single_description',
+        'std'  => '',
+        'type' => 'text',
     );
     
     // SMTP Settings
