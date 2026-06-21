@@ -50,6 +50,10 @@
 	margin-bottom:10px;
 	width:100%;
 }
+#optionsframework .controls textarea.of-input {
+	min-height:140px;
+	display:block;
+}
 #optionsframework .section-radio label, #optionsframework .section-multicheck label {
 	float:left;
 	max-width:90%;
