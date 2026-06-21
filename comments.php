@@ -17,10 +17,11 @@ function ztheme_comment($comment, $args, $depth) {
     $tag = ('div' === $args['style']) ? 'div' : 'li';
     $parent_comment_id = $comment->comment_parent;
     $parent_comment = $parent_comment_id ? get_comment($parent_comment_id) : null;
+    $is_child = $depth > 1;
     ?>
     <<?php echo $tag; ?> <?php comment_class(empty($args['has_children']) ? '' : 'parent'); ?> id="comment-<?php comment_ID() ?>">
-        <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-            <div class="flex gap-4">
+        <article id="div-comment-<?php comment_ID(); ?>" class="comment-body <?php echo $is_child ? 'comment-child' : 'comment-parent'; ?>">
+            <div class="flex gap-3">
                 <!-- Avatar -->
                 <div class="flex-shrink-0">
                     <?php if (0 != $args['avatar_size']) echo get_avatar($comment, $args['avatar_size'], '', '', array('class' => 'rounded-full')); ?>
@@ -28,25 +29,26 @@ function ztheme_comment($comment, $args, $depth) {
                 
                 <div class="flex-1 min-w-0">
                     <!-- Comment meta -->
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="font-semibold text-slate-800 dark:text-slate-100">
+                    <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                        <span class="font-semibold text-slate-800 dark:text-slate-100 text-sm">
                             <?php printf('%s', get_comment_author_link()); ?>
                         </span>
                         <?php if ($parent_comment): ?>
                         <span class="text-xs text-slate-400">
-                            @<?php echo htmlspecialchars(get_comment_author($parent_comment_id)); ?>
+                            <i class="fa-solid fa-reply fa-flip-horizontal text-[10px] mr-0.5"></i>
+                            <?php echo htmlspecialchars(get_comment_author($parent_comment_id)); ?>
                         </span>
                         <?php endif; ?>
                         <time datetime="<?php comment_time('c'); ?>" class="text-xs text-slate-400">
                             <?php echo get_comment_date('Y-m-d H:i'); ?>
                         </time>
                         <?php if ('0' == $comment->comment_approved): ?>
-                        <span class="text-xs text-amber-500">等待审核</span>
+                        <span class="text-xs text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-1.5 py-0.5 rounded">等待审核</span>
                         <?php endif; ?>
                     </div>
                     
                     <!-- Comment content -->
-                    <div class="text-slate-600 dark:text-slate-400 mb-3">
+                    <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-2">
                         <?php comment_text(); ?>
                     </div>
                     
@@ -87,13 +89,14 @@ function ztheme_comment($comment, $args, $depth) {
         已有 <?php echo get_comments_number(); ?> 条评论
     </h3>
     
-    <ol class="comment-list space-y-6">
+    <ol class="comment-list">
         <?php
         wp_list_comments(array(
             'style'       => 'ol',
             'short_ping'  => true,
-            'avatar_size' => 42,
+            'avatar_size' => 40,
             'callback'    => 'ztheme_comment',
+            'max_depth'   => 2,
         ));
         ?>
     </ol>
