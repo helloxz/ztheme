@@ -64,7 +64,7 @@
                     </div>
                     
                     <!-- PC Navigation -->
-                    <nav class="hidden md:block">
+                    <nav class="hidden xl:block">
                         <?php
                         wp_nav_menu(array(
                             'theme_location' => 'header-menu',
@@ -80,7 +80,7 @@
                 <!-- Right side: Search + Dark mode -->
                 <div class="flex items-center gap-2">
                     <!-- Search (desktop) -->
-                    <div class="hidden md:block">
+                    <div class="hidden xl:block">
                         <form action="/" method="GET" class="relative">
                             <input type="text" name="s" placeholder="搜索..." class="w-48 lg:w-56 px-4 py-2 text-sm bg-slate-100 dark:bg-slate-800 border-0 rounded-lg focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-slate-700 outline-none transition-all">
                             <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary-500 transition-colors">
@@ -96,7 +96,7 @@
                     </button>
                     
                     <!-- Mobile buttons -->
-                    <div class="flex items-center gap-2 md:hidden">
+                    <div class="flex items-center gap-2 xl:hidden">
                         <!-- Search button (mobile) -->
                         <button @click="$dispatch('toggle-search')" class="inline-flex items-center justify-center py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
                             <i class="fa-solid fa-magnifying-glass text-sm"></i>
@@ -123,7 +123,7 @@
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
              x-cloak
-             class="md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+             class="xl:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
             <div class="px-4 py-4 space-y-2">
                 <?php
                 wp_nav_menu(array(
@@ -149,7 +149,7 @@
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
          x-cloak
-         class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden"
+         class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm xl:hidden"
          @click.self="open = false">
         <div class="p-4">
             <form action="/" method="GET" class="relative">
