@@ -98,13 +98,13 @@
                 <?php endif; ?>
                 
                 <?php if (is_active_sidebar('footer3')): ?>
-                <div>
+                <div class="hidden lg:block">
                     <?php dynamic_sidebar('footer3'); ?>
                 </div>
                 <?php endif; ?>
                 
                 <?php if (is_active_sidebar('footer4')): ?>
-                <div>
+                <div class="hidden lg:block">
                     <?php dynamic_sidebar('footer4'); ?>
                 </div>
                 <?php endif; ?>

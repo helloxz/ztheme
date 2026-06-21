@@ -109,11 +109,13 @@
     endwhile;
     ?>
     <div class="space-y-4">
+        <?php if (!is_paged()): ?>
         <?php foreach ($sticky_posts_html as $sticky_post_html): ?>
             <?php echo $sticky_post_html; ?>
         <?php endforeach; ?>
+        <?php endif; ?>
 
-        <?php if (!empty($recommend_items)): ?>
+        <?php if (!empty($recommend_items) && is_home() && !is_paged()): ?>
         <section class="hidden lg:block py-2" aria-label="我的产品">
             <div class="grid grid-cols-3 gap-4">
                 <?php foreach ($recommend_items as $index => $recommend_item):

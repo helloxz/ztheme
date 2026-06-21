@@ -4,7 +4,7 @@ Theme URI: https://github.com/helloxz/ztheme
 Author: xiaoz
 Author URI: https://blog.xiaoz.org/
 Description: A modern, clean WordPress theme built with Tailwind CSS and Alpine.js. Supports Markdown writing with dark mode.
-Version: 1.0.0
+Version: 1.0.1
 Requires at least: 5.9
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -23,6 +23,14 @@ Tags: blog, one-column, two-columns, custom-background, custom-colors, custom-he
 }
 #respond{
     margin-top:18px;
+}
+
+/*手机上的样式*/
+@media (max-width: 640px) {
+    .footer-widget{
+        margin-left:16px;
+        margin-right:16px;
+    }
 }
 /*.items-center a{
     font-size:13px;
