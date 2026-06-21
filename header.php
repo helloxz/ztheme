@@ -98,14 +98,14 @@
                     <!-- Mobile buttons -->
                     <div class="flex items-center gap-2 md:hidden">
                         <!-- Search button (mobile) -->
-                        <button @click="$dispatch('toggle-search')" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
-                            <i class="fa-solid fa-magnifying-glass text-base"></i>
+                        <button @click="$dispatch('toggle-search')" class="inline-flex items-center justify-center py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
                         </button>
                         
                         <!-- Mobile menu button -->
-                        <button x-data="{ mobileMenu: false }" @click="mobileMenu = !mobileMenu; $dispatch('toggle-mobile-menu', { open: mobileMenu })" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
-                            <i x-show="!mobileMenu" class="fa-solid fa-bars text-base"></i>
-                            <i x-show="mobileMenu" x-cloak class="fa-solid fa-xmark text-base"></i>
+                        <button x-data="{ mobileMenu: false }" @click="mobileMenu = !mobileMenu; $dispatch('toggle-mobile-menu', { open: mobileMenu })" class="inline-flex items-center justify-center py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
+                            <i x-show="!mobileMenu" class="fa-solid fa-bars text-sm"></i>
+                            <i x-show="mobileMenu" x-cloak class="fa-solid fa-xmark text-sm"></i>
                         </button>
                     </div>
                 </div>
