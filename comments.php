@@ -48,7 +48,7 @@ function ztheme_comment($comment, $args, $depth) {
                     </div>
                     
                     <!-- Comment content -->
-                    <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-2">
+                    <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-2 break-words">
                         <?php comment_text(); ?>
                     </div>
                     
