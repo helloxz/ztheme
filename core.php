@@ -51,6 +51,7 @@ function ztheme_parsedown() {
                 }
             }
         }
+        $content = str_replace('<img ', '<img loading="lazy" ', $content);
         echo $content;
     } else {
         $content = strip_tags($content);

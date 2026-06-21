@@ -601,6 +601,7 @@ function ztheme_gravatar_cdn($avatar) {
     if (!empty(of_get_option('gravatar'))) {
         $avatar = str_replace(array("secure.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com"), of_get_option('gravatar'), $avatar);
     }
+    $avatar = str_replace('<img ', '<img loading="lazy" ', $avatar);
     return $avatar;
 }
 add_filter('get_avatar', 'ztheme_gravatar_cdn', 10, 3);
