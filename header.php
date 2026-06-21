@@ -90,7 +90,7 @@
                     </div>
                     
                     <!-- Dark mode toggle -->
-                    <button @click="dark = !dark; localStorage.setItem('theme', dark ? 'dark' : 'light')" class="flex items-center justify-center h-[36px] w-9 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all" title="切换暗色模式">
+                    <button @click="dark = !dark; localStorage.setItem('theme', dark ? 'dark' : 'light')" class="inline-flex items-center justify-center py-2 px-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all" title="切换暗色模式">
                         <i x-show="!dark" class="fa-solid fa-moon text-sm"></i>
                         <i x-show="dark" x-cloak class="fa-solid fa-sun text-sm"></i>
                     </button>
