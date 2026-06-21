@@ -72,6 +72,12 @@ function ztheme_pagenavi($range = 4) {
             $paged = 1;
         }
         
+        // First page: show "查看更多" button only
+        if ($paged == 1) {
+            echo '<div class="flex justify-center"><a href="' . get_pagenum_link(2) . '" class="btn-primary px-6 py-2.5 rounded-lg">查看更多 <i class="fa-solid fa-arrow-right ml-1"></i></a></div>';
+            return;
+        }
+        
         echo '<nav class="flex items-center justify-center gap-2" aria-label="Pagination">';
         
         // Previous page
@@ -396,4 +402,84 @@ function ztheme_like() {
     }
     
     die;
+}
+
+// Featured posts - get card image URL
+function ztheme_get_featured_card_image($post_id) {
+    // 1. Featured image
+    if (has_post_thumbnail($post_id)) {
+        $img_id = get_post_thumbnail_id($post_id);
+        $img_url = wp_get_attachment_image_url($img_id, 'medium_large');
+        if ($img_url) {
+            if (!empty(of_get_option('cdn'))) {
+                $siteurl = get_bloginfo('siteurl');
+                $siteurl = str_replace(array('http://', 'https://'), '', $siteurl);
+                $siteurl = rtrim($siteurl, '/');
+                $img_url = str_replace("{$siteurl}/wp-content/uploads/", of_get_option('cdn') . "/wp-content/uploads/", $img_url);
+            }
+            return $img_url;
+        }
+    }
+    
+    // 2. First image in post content (HTML or Markdown)
+    $post = get_post($post_id);
+    if ($post) {
+        $content = $post->post_content;
+        $img_url = '';
+        
+        // Try HTML <img> first
+        preg_match_all('/<img[^>]+src=[\'"]([^\'"]+)[\'"][^>]*>/i', $content, $html_matches);
+        if (!empty($html_matches[1][0])) {
+            $img_url = $html_matches[1][0];
+        }
+        
+        // Try Markdown ![alt](url)
+        if (empty($img_url)) {
+            preg_match_all('/!\[([^\]]*)\]\(([^)]+)\)/i', $content, $md_matches);
+            if (!empty($md_matches[2][0])) {
+                $img_url = $md_matches[2][0];
+            }
+        }
+        
+        if (!empty($img_url)) {
+            if (!empty(of_get_option('cdn'))) {
+                $siteurl = get_bloginfo('siteurl');
+                $siteurl = str_replace(array('http://', 'https://'), '', $siteurl);
+                $siteurl = rtrim($siteurl, '/');
+                $img_url = str_replace("{$siteurl}/wp-content/uploads/", of_get_option('cdn') . "/wp-content/uploads/", $img_url);
+            }
+            return $img_url;
+        }
+    }
+    
+    return '';
+}
+
+// Render featured card image HTML with fallback
+function ztheme_render_featured_card_image($post_id, $title) {
+    $img_url = ztheme_get_featured_card_image($post_id);
+    
+    if ($img_url) {
+        echo '<img src="' . esc_url($img_url) . '" alt="' . esc_attr($title) . '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />';
+    } else {
+        $first_char = mb_substr($title, 0, 1, 'UTF-8');
+        if (empty($first_char)) $first_char = '?';
+        echo '<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600"><span class="text-5xl font-bold text-slate-400 dark:text-slate-500">' . esc_html($first_char) . '</span></div>';
+    }
+}
+
+// Get featured post IDs from option
+function ztheme_get_featured_post_ids() {
+    $raw = of_get_option('home_featured_posts');
+    if (empty($raw)) return array();
+    
+    $ids = array();
+    $lines = array_filter(explode("\n", str_replace("\r\n", "\n", $raw)));
+    foreach ($lines as $line) {
+        $id = intval(trim($line));
+        if ($id > 0) {
+            $ids[] = $id;
+        }
+    }
+    return array_unique($ids);
 }

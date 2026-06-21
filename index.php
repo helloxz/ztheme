@@ -157,7 +157,58 @@
     <div class="mt-8">
         <?php ztheme_pagenavi(); ?>
     </div>
-    
+
+    <?php
+    // Featured posts (first page only)
+    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+    $featured_ids = ($paged <= 1) ? ztheme_get_featured_post_ids() : array();
+    if (!empty($featured_ids)):
+        $featured_query = new WP_Query(array(
+            'post__in'            => $featured_ids,
+            'posts_per_page'      => count($featured_ids),
+            'orderby'             => 'post__in',
+            'ignore_sticky_posts' => 1,
+        ));
+
+        if ($featured_query->have_posts()):
+    ?>
+    <!-- Featured posts -->
+    <section class="mt-12">
+        <div class="mb-6 text-center">
+            <h2 class="text-xl font-semibold text-slate-800 dark:text-slate-100"><i class="fa-solid fa-star text-amber-400 mr-2"></i>精选推荐</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <?php while ($featured_query->have_posts()): $featured_query->the_post(); ?>
+            <article class="featured-card group overflow-hidden rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
+                <a href="<?php the_permalink(); ?>" class="block aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-700">
+                    <?php ztheme_render_featured_card_image(get_the_ID(), get_the_title()); ?>
+                </a>
+                <div class="p-4 md:p-5 flex flex-col flex-1">
+                    <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100 line-clamp-2 leading-snug">
+                        <a href="<?php the_permalink(); ?>" class="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"><?php the_title(); ?></a>
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1.5 line-clamp-2 leading-relaxed"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 36)); ?></p>
+                    <div class="mt-auto pt-3 flex items-center justify-between text-xs">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium"><?php echo esc_html(get_ztheme_category()); ?></span>
+                        <span class="flex items-center gap-1 text-slate-400 dark:text-slate-500">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <?php the_time('Y-m-d'); ?>
+                        </span>
+                    </div>
+                </div>
+            </article>
+            <?php endwhile; ?>
+        </div>
+    </section>
+    <?php
+            wp_reset_postdata();
+        endif;
+    endif;
+    ?>
+
     <?php else: ?>
     <div class="card p-12 text-center">
         <svg class="w-16 h-16 mx-auto text-slate-300 dark:text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

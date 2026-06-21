@@ -46,8 +46,12 @@
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500 text-white flex-shrink-0;
   }
   
+  .featured-card {
+    @apply flex flex-col h-full;
+  }
+  
   .btn-primary {
-    @apply inline-flex items-center justify-center px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-all duration-200 font-medium;
+    @apply inline-flex items-center justify-center px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white hover:text-white dark:text-white dark:hover:text-white rounded-lg transition-all duration-200 font-medium;
   }
   
   .btn-outline {

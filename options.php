@@ -120,39 +120,14 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
         'type' => 'textarea',
     );
 
-    // Category settings (reserved)
     $options[] = array(
-        'name' => __('首页分类目录1', 'ztheme'),
-        'desc' => __('格式为"分类目录ID|分类目录名|图标名称|颜色"（备用）', 'ztheme'),
-        'id'   => 'cat1',
+        'name' => __('精选推荐', 'ztheme'),
+        'desc' => __('每行一个文章ID，按填写顺序展示，建议填写3-6篇。留空则不显示该模块。', 'ztheme'),
+        'id'   => 'home_featured_posts',
         'std'  => '',
-        'type' => 'text',
+        'type' => 'textarea',
     );
-    
-    $options[] = array(
-        'name' => __('首页分类目录2', 'ztheme'),
-        'desc' => __('格式为"分类目录ID|分类目录名|图标名称|颜色"（备用）', 'ztheme'),
-        'id'   => 'cat2',
-        'std'  => '',
-        'type' => 'text',
-    );
-    
-    $options[] = array(
-        'name' => __('首页分类目录3', 'ztheme'),
-        'desc' => __('格式为"分类目录ID|分类目录名|图标名称|颜色"（备用）', 'ztheme'),
-        'id'   => 'cat3',
-        'std'  => '',
-        'type' => 'text',
-    );
-    
-    $options[] = array(
-        'name' => __('首页分类目录4', 'ztheme'),
-        'desc' => __('格式为"分类目录ID|分类目录名|图标名称|颜色"（备用）', 'ztheme'),
-        'id'   => 'cat4',
-        'std'  => '',
-        'type' => 'text',
-    );
-    
+
     // Personal Info
     $options[] = array(
         'name' => '个人信息',
