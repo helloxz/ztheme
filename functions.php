@@ -34,8 +34,8 @@ function ztheme_enqueue_assets() {
     // Highlight.js
     wp_enqueue_script('ztheme-highlight', $template_uri . '/static/js/highlight.min.js', array(), '11.9.0', true);
     
-    // Quicklink
-    wp_enqueue_script('ztheme-quicklink', $template_uri . '/static/js/quicklink.min.js', array(), '2.3.0', true);
+    // instant.page
+    wp_enqueue_script('ztheme-instantpage', $template_uri . '/static/js/instantpage-5.2.0.js', array(), '5.2.0', true);
     
     // Alpine.js
     wp_enqueue_script('ztheme-alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.0', true);

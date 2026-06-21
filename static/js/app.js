@@ -290,14 +290,9 @@ if (typeof wp !== 'undefined' && wp.customize) {
     wp.customize.bind('preview-ready', initAll);
 }
 
-// Quicklink prefetching (viewport-based)
-quicklink.listen({
-    ignores: [
-        /\/wp-admin/,
-        /\/wp-login/,
-        /\/feed/,
-        /\/xmlrpc/,
-        uri => uri.includes('#'),
-        uri => uri === window.location.href
-    ]
+// instant.page: exclude admin and login links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href*="wp-admin"], a[href*="wp-login"]').forEach(function(link) {
+        link.setAttribute('data-no-instant', '');
+    });
 });
