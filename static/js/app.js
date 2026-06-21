@@ -21,7 +21,7 @@ function initHighlightAndCopyButtons() {
             
             // Create copy button
             const btn = document.createElement('button');
-            btn.className = 'copy-btn absolute top-3 right-3 p-2 bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white rounded-lg';
+            btn.className = 'copy-btn absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white rounded-lg leading-none';
             btn.innerHTML = '<i class="fa-regular fa-copy text-sm"></i>';
             
             // Add click handler
