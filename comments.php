@@ -100,10 +100,24 @@ function ztheme_comment($comment, $args, $depth) {
         ?>
     </ol>
     
-    <?php the_comments_navigation(array(
-        'prev_text' => '<span class="flex items-center gap-1"><i class="fa-solid fa-chevron-left text-sm"></i> 上一页</span>',
-        'next_text' => '<span class="flex items-center gap-1">下一页 <i class="fa-solid fa-chevron-right text-sm"></i></span>',
-    )); ?>
+    <?php
+    $cpage = get_query_var('cpage', 1);
+    $max_cpage = get_comment_pages_count();
+    if ($max_cpage > 1):
+    ?>
+    <nav class="flex items-center justify-center gap-3 mt-6">
+        <?php if ($cpage < $max_cpage): ?>
+        <a href="<?php echo esc_url(get_comments_pagenum_link($cpage + 1)); ?>" class="btn-outline text-sm">
+            <i class="fa-solid fa-chevron-left text-xs mr-1"></i> 更早的评论
+        </a>
+        <?php endif; ?>
+        <?php if ($cpage > 1): ?>
+        <a href="<?php echo esc_url(get_comments_pagenum_link($cpage - 1)); ?>" class="btn-primary text-sm">
+            较新的评论 <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+        </a>
+        <?php endif; ?>
+    </nav>
+    <?php endif; ?>
     
     <?php if (!comments_open()): ?>
     <p class="mt-6 text-center text-slate-400 dark:text-slate-500 text-sm"><i class="fas fa-comment-slash mr-1"></i> 评论已关闭</p>
