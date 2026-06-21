@@ -149,6 +149,93 @@ function initSmoothScroll() {
     });
 }
 
+// Comment form validation
+function initCommentValidation() {
+    const form = document.getElementById('commentform');
+    if (!form) return;
+    
+    form.addEventListener('submit', function(e) {
+        const comment = document.getElementById('comment');
+        const author = document.getElementById('author');
+        const email = document.getElementById('email');
+        
+        clearAllErrors();
+        window._firstErrorField = null;
+        
+        if (comment && comment.value.trim().length < 5) {
+            showError(comment, '评论内容至少需要5个字');
+        }
+        
+        if (author && !author.value.trim()) {
+            showError(author, '请输入昵称');
+        }
+        
+        if (email && !email.value.trim()) {
+            showError(email, '请输入邮箱');
+        } else if (email && !isValidEmail(email.value)) {
+            showError(email, '请输入正确的邮箱格式');
+        }
+        
+        if (document.querySelector('.comment-error')) {
+            e.preventDefault();
+            return;
+        }
+        
+        const submitBtn = form.querySelector('.btn-primary');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '请稍候...';
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+                submitBtn.textContent = originalText;
+            }, 10000);
+        }
+    });
+    
+    ['comment', 'author', 'email'].forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            field.addEventListener('input', function() {
+                removeError(this);
+            });
+        }
+    });
+}
+
+function showError(field, message) {
+    const error = document.createElement('p');
+    error.className = 'comment-error';
+    error.style.cssText = 'color:#ef4444;font-size:0.75rem;margin-top:0.25rem;';
+    error.textContent = message;
+    field.parentNode.appendChild(error);
+    field.style.borderColor = '#ef4444';
+    if (!window._firstErrorField) {
+        window._firstErrorField = field;
+        field.focus();
+    }
+}
+
+function removeError(field) {
+    const error = field.parentNode.querySelector('.comment-error');
+    if (error) error.remove();
+    field.style.borderColor = '';
+}
+
+function clearAllErrors() {
+    document.querySelectorAll('.comment-error').forEach(el => el.remove());
+    document.querySelectorAll('#commentform input, #commentform textarea').forEach(el => {
+        el.style.borderColor = '';
+    });
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 // Initialize all functions
 function initAll() {
     initHighlightAndCopyButtons();
@@ -156,6 +243,7 @@ function initAll() {
     initResponsiveTables();
     initExternalLinks();
     initSmoothScroll();
+    initCommentValidation();
 }
 
 // Run on DOM ready

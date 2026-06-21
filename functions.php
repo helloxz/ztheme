@@ -39,6 +39,11 @@ function ztheme_enqueue_assets() {
     
     // Main app JS
     wp_enqueue_script('ztheme-app', $template_uri . '/static/js/app.js', array('ztheme-highlight'), $theme_version, true);
+    
+    // Comment reply script
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 }
 add_action('wp_enqueue_scripts', 'ztheme_enqueue_assets');
 

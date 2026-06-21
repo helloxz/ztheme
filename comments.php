@@ -74,11 +74,11 @@ function ztheme_comment($comment, $args, $depth) {
         'class_form'    => 'space-y-4',
         'class_submit'  => 'btn-primary',
         'label_submit'  => '发表评论',
-        'comment_field' => '<div class="mb-4"><textarea id="comment" name="comment" class="input-field min-h-[120px]" placeholder="请输入评论内容..." required></textarea></div>',
+        'comment_field' => '<div class="mb-4"><textarea id="comment" name="comment" class="input-field min-h-[100px]" placeholder="请输入评论内容..." required></textarea></div>',
         'fields'        => array(
             'author' => '<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"><div><input type="text" name="author" id="author" class="input-field" placeholder="昵称 *" required></div>',
             'email'  => '<div><input type="email" name="email" id="email" class="input-field" placeholder="邮箱 *" required></div>',
-            'url'    => '<div><input type="url" name="url" id="url" class="input-field" placeholder="网站"></div></div>',
+            'url'    => '<div><input type="url" name="url" id="url" class="input-field" placeholder="网站（选填）"></div></div>',
         ),
     )); ?>
     
