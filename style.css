@@ -32,6 +32,9 @@ Tags: blog, one-column, two-columns, custom-background, custom-colors, custom-he
         margin-right:16px;
     }
 }
+.comment-parent{
+    margin-top:16px;
+}
 /*.items-center a{
     font-size:13px;
     color:#e5e7eb;
