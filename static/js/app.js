@@ -290,9 +290,3 @@ if (typeof wp !== 'undefined' && wp.customize) {
     wp.customize.bind('preview-ready', initAll);
 }
 
-// instant.page: exclude admin and login links
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href*="wp-admin"], a[href*="wp-login"]').forEach(function(link) {
-        link.setAttribute('data-no-instant', '');
-    });
-});

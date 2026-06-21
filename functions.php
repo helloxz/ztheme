@@ -34,9 +34,6 @@ function ztheme_enqueue_assets() {
     // Highlight.js
     wp_enqueue_script('ztheme-highlight', $template_uri . '/static/js/highlight.min.js', array(), '11.9.0', true);
     
-    // instant.page
-    wp_enqueue_script('ztheme-instantpage', $template_uri . '/static/js/instantpage-5.2.0.js', array(), '5.2.0', true);
-    
     // Alpine.js
     wp_enqueue_script('ztheme-alpine', $template_uri . '/static/js/alpine.min.js', array(), '3.13.0', true);
     
