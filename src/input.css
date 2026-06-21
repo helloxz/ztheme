@@ -51,7 +51,7 @@
   }
   
   .btn-primary {
-    @apply inline-flex items-center justify-center px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white hover:text-white dark:text-white dark:hover:text-white rounded-lg transition-all duration-200 font-medium;
+    @apply inline-flex items-center justify-center px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white hover:text-white dark:text-white dark:hover:text-white rounded-lg transition-all duration-200 font-medium cursor-pointer;
   }
   
   .btn-outline {
