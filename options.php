@@ -113,6 +113,14 @@ IPinfo|聚合多接口的IP地址查询工具|https://ip.rss.ink/',
     );
     
     $options[] = array(
+        'name' => __('首页广告', 'ztheme'),
+        'desc' => __('格式：每3行为一组（链接URL、图片URL、广告名称），留空不显示', 'ztheme'),
+        'id'   => 'home_ad',
+        'std'  => '',
+        'type' => 'textarea',
+    );
+    
+    $options[] = array(
         'name' => __('首页赞助商', 'ztheme'),
         'desc' => __('格式：名称|链接|图片URL，每行一个。仅首页底部友情链接上方显示', 'ztheme'),
         'id'   => 'home_sponsors',

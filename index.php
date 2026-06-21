@@ -146,6 +146,8 @@
         </section>
         <?php endif; ?>
 
+        <?php ztheme_render_ad('home_ad'); ?>
+
         <?php foreach ($regular_posts_html as $regular_post_html): ?>
             <?php echo $regular_post_html; ?>
         <?php endforeach; ?>
