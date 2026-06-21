@@ -108,6 +108,10 @@
     @apply font-medium text-slate-700 dark:text-slate-200 truncate;
     font-size: 13px;
   }
+
+  .copyright-links a {
+    @apply text-slate-300 dark:text-slate-400 hover:text-white dark:hover:text-white transition-colors;
+  }
 }
 
 @layer utilities {

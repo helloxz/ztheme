@@ -115,8 +115,8 @@
         <div class="h-px bg-gradient-to-r from-transparent via-slate-600/50 to-transparent"></div>
         <div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div class="text-center text-sm text-slate-400 dark:text-slate-500">
-                    <?php echo of_get_option('footer', 'Copyright &copy; ' . date('Y') . '. Theme by <a href="https://www.xiaoz.me/" target="_blank" class="text-primary-400 hover:text-primary-300">ztheme</a>'); ?>
+                <div class="copyright-links text-center text-[13px] text-slate-400 dark:text-slate-500">
+                    <?php echo of_get_option('footer', 'Copyright &copy; ' . date('Y') . '. Theme by <a href="https://blog.xiaoz.org/" target="_blank" class="text-slate-300 dark:text-slate-400 hover:text-white dark:hover:text-white">Ztheme</a>'); ?>
                 </div>
             </div>
         </div>
