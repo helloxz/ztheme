@@ -37,9 +37,7 @@
          x-transition:leave-end="opacity-0 translate-y-4"
          class="fixed bottom-8 right-8 z-50">
         <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" class="flex items-center justify-center w-12 h-12 bg-primary-500 hover:bg-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" title="返回顶部">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-            </svg>
+            <i class="fa-solid fa-arrow-up text-base"></i>
         </button>
     </div>
     
@@ -86,40 +84,28 @@
                         <form action="/" method="GET" class="relative">
                             <input type="text" name="s" placeholder="搜索..." class="w-48 lg:w-56 px-4 py-2 text-sm bg-slate-100 dark:bg-slate-800 border-0 rounded-lg focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-slate-700 outline-none transition-all">
                             <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary-500 transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                </svg>
+                                <i class="fa-solid fa-magnifying-glass text-sm"></i>
                             </button>
                         </form>
                     </div>
                     
                     <!-- Dark mode toggle -->
-                    <button @click="dark = !dark; localStorage.setItem('theme', dark ? 'dark' : 'light')" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all" title="切换暗色模式">
-                        <svg x-show="!dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        </svg>
-                        <svg x-show="dark" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
+                    <button @click="dark = !dark; localStorage.setItem('theme', dark ? 'dark' : 'light')" class="flex items-center justify-center h-[36px] w-9 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all" title="切换暗色模式">
+                        <i x-show="!dark" class="fa-solid fa-moon text-sm"></i>
+                        <i x-show="dark" x-cloak class="fa-solid fa-sun text-sm"></i>
                     </button>
                     
                     <!-- Mobile buttons -->
                     <div class="flex items-center gap-2 md:hidden">
                         <!-- Search button (mobile) -->
                         <button @click="$dispatch('toggle-search')" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
+                            <i class="fa-solid fa-magnifying-glass text-base"></i>
                         </button>
                         
                         <!-- Mobile menu button -->
                         <button x-data="{ mobileMenu: false }" @click="mobileMenu = !mobileMenu; $dispatch('toggle-mobile-menu', { open: mobileMenu })" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 rounded-lg transition-all">
-                            <svg x-show="!mobileMenu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                            </svg>
-                            <svg x-show="mobileMenu" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
+                            <i x-show="!mobileMenu" class="fa-solid fa-bars text-base"></i>
+                            <i x-show="mobileMenu" x-cloak class="fa-solid fa-xmark text-base"></i>
                         </button>
                     </div>
                 </div>
@@ -169,9 +155,7 @@
             <form action="/" method="GET" class="relative">
                 <input type="text" name="s" placeholder="搜索文章..." class="w-full px-5 py-4 text-lg bg-white dark:bg-slate-800 rounded-xl shadow-xl outline-none focus:ring-2 focus:ring-primary-500" autofocus>
                 <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
                 </button>
             </form>
         </div>
@@ -180,16 +164,14 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <?php if ((is_home() || is_front_page()) && !empty(of_get_option('home_notice'))): ?>
         <div class="mb-6 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl">
-            <div class="flex items-start gap-3">
-                <div class="flex-shrink-0 mt-0.5">
-                    <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                    </svg>
+            <div class="flex items-center gap-3">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-bell text-base text-primary-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-primary-800 dark:text-primary-200"><?php echo of_get_option('home_notice'); ?></p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-sm text-primary-800 dark:text-primary-200"><?php echo of_get_option('home_notice'); ?></p>
-                </div>
-            </div>
         </div>
         <?php endif; ?>
 

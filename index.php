@@ -68,28 +68,19 @@
                 <!-- Meta -->
                 <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
                     <span class="flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                        </svg>
+                        <i class="fa-regular fa-folder text-xs"></i>
                         <?php ztheme_category(); ?>
                     </span>
                     <span class="flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
+                        <i class="fa-regular fa-calendar text-xs"></i>
                         <?php the_time('Y-m-d'); ?>
                     </span>
                     <span class="flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                        </svg>
+                        <i class="fa-regular fa-comment text-xs"></i>
                         <?php comments_number('0评论', '1评论', '%评论'); ?>
                     </span>
                     <span class="hidden sm:flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                        </svg>
+                        <i class="fa-regular fa-eye text-xs"></i>
                         <?php ztheme_get_post_views($post->ID); ?>
                     </span>
                 </div>
@@ -103,9 +94,7 @@
                 <div class="mt-auto">
                     <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
                         阅读全文
-                        <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
+                        <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-0.5 transition-transform"></i>
                     </a>
                 </div>
             </div>
@@ -192,9 +181,7 @@
                     <div class="mt-auto pt-3 flex items-center justify-between text-xs">
                         <span class="inline-flex items-center px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium"><?php echo esc_html(get_ztheme_category()); ?></span>
                         <span class="flex items-center gap-1 text-slate-400 dark:text-slate-500">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
+                            <i class="fa-regular fa-calendar text-xs"></i>
                             <?php the_time('Y-m-d'); ?>
                         </span>
                     </div>
@@ -211,9 +198,7 @@
 
     <?php else: ?>
     <div class="card p-12 text-center">
-        <svg class="w-16 h-16 mx-auto text-slate-300 dark:text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
+        <i class="fa-regular fa-face-frown text-5xl mx-auto text-slate-300 dark:text-slate-600 mb-4"></i>
         <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">暂无文章</h3>
         <p class="text-slate-500 dark:text-slate-400">没有找到相关文章</p>
     </div>

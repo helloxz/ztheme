@@ -99,8 +99,8 @@ function ztheme_comment($comment, $args, $depth) {
     </ol>
     
     <?php the_comments_navigation(array(
-        'prev_text' => '<span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> 上一页</span>',
-        'next_text' => '<span class="flex items-center gap-1">下一页 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>',
+        'prev_text' => '<span class="flex items-center gap-1"><i class="fa-solid fa-chevron-left text-sm"></i> 上一页</span>',
+        'next_text' => '<span class="flex items-center gap-1">下一页 <i class="fa-solid fa-chevron-right text-sm"></i></span>',
     )); ?>
     
     <?php if (!comments_open()): ?>
