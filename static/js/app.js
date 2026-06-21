@@ -149,10 +149,44 @@ function initSmoothScroll() {
     });
 }
 
+// Comment info localStorage
+function saveCommentInfo() {
+    const author = document.getElementById('author');
+    const email = document.getElementById('email');
+    const url = document.getElementById('url');
+    
+    if (author || email || url) {
+        const commentInfo = {
+            author: author?.value || '',
+            email: email?.value || '',
+            url: url?.value || ''
+        };
+        localStorage.setItem('ztheme_comment_info', JSON.stringify(commentInfo));
+    }
+}
+
+function loadCommentInfo() {
+    const saved = localStorage.getItem('ztheme_comment_info');
+    if (!saved) return;
+    
+    try {
+        const info = JSON.parse(saved);
+        const author = document.getElementById('author');
+        const email = document.getElementById('email');
+        const url = document.getElementById('url');
+        
+        if (author && info.author) author.value = info.author;
+        if (email && info.email) email.value = info.email;
+        if (url && info.url) url.value = info.url;
+    } catch (e) {}
+}
+
 // Comment form validation
 function initCommentValidation() {
     const form = document.getElementById('commentform');
     if (!form) return;
+    
+    loadCommentInfo();
     
     form.addEventListener('submit', function(e) {
         const comment = document.getElementById('comment');
@@ -162,8 +196,8 @@ function initCommentValidation() {
         clearAllErrors();
         window._firstErrorField = null;
         
-        if (comment && comment.value.trim().length < 5) {
-            showError(comment, '评论内容至少需要5个字');
+        if (comment && comment.value.trim().length < 2) {
+            showError(comment, '评论内容至少需要2个字');
         }
         
         if (author && !author.value.trim()) {
@@ -180,6 +214,8 @@ function initCommentValidation() {
             e.preventDefault();
             return;
         }
+        
+        saveCommentInfo();
         
         const submitBtn = form.querySelector('.btn-primary');
         if (submitBtn) {

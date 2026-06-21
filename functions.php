@@ -25,6 +25,9 @@ function ztheme_enqueue_assets() {
     // Main stylesheet (Tailwind CSS)
     wp_enqueue_style('ztheme-style', $template_uri . '/dist/styles.css', array(), $theme_version);
     
+    // Theme style.css
+    wp_enqueue_style('ztheme-style-css', $template_uri . '/style.css', array(), $theme_version);
+    
     // Highlight.js CSS
     wp_enqueue_style('ztheme-highlight', $template_uri . '/static/css/monokai-sublime.min.css', array(), '11.9.0');
     

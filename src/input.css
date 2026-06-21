@@ -131,7 +131,7 @@
   }
   
   .comment-child {
-    @apply ml-6 sm:ml-10 pl-3 sm:pl-4 border-l-2 border-slate-200 dark:border-slate-600 mt-4;
+    @apply ml-6 sm:ml-10 p-3 sm:p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg mt-4;
   }
   
   .comment-body {

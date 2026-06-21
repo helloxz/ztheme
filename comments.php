@@ -17,7 +17,7 @@ function ztheme_comment($comment, $args, $depth) {
     $tag = ('div' === $args['style']) ? 'div' : 'li';
     $parent_comment_id = $comment->comment_parent;
     $parent_comment = $parent_comment_id ? get_comment($parent_comment_id) : null;
-    $is_child = $depth > 1;
+    $is_child = $depth >= 2;
     ?>
     <<?php echo $tag; ?> <?php comment_class(empty($args['has_children']) ? '' : 'parent'); ?> id="comment-<?php comment_ID() ?>">
         <article id="div-comment-<?php comment_ID(); ?>" class="comment-body <?php echo $is_child ? 'comment-child' : 'comment-parent'; ?>">
@@ -96,7 +96,6 @@ function ztheme_comment($comment, $args, $depth) {
             'short_ping'  => true,
             'avatar_size' => 40,
             'callback'    => 'ztheme_comment',
-            'max_depth'   => 2,
         ));
         ?>
     </ol>
