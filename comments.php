@@ -104,8 +104,11 @@ function ztheme_comment($comment, $args, $depth) {
     )); ?>
     
     <?php if (!comments_open()): ?>
-    <p class="mt-6 text-center text-slate-500 dark:text-slate-400">评论已关闭</p>
+    <p class="mt-6 text-center text-slate-400 dark:text-slate-500 text-sm"><i class="fas fa-comment-slash mr-1"></i> 评论已关闭</p>
     <?php endif; ?>
+    
+    <?php elseif (!comments_open()): ?>
+    <p class="text-center text-slate-400 dark:text-slate-500 text-sm"><i class="fas fa-comment-slash mr-1"></i> 评论已关闭</p>
     
     <?php endif; ?>
 </div>
