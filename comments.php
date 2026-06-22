@@ -108,12 +108,12 @@ function ztheme_comment($comment, $args, $depth) {
     <nav class="flex items-center justify-center gap-3 mt-6">
         <?php if ($cpage < $max_cpage): ?>
         <a href="<?php echo esc_url(get_comments_pagenum_link($cpage + 1)); ?>" class="btn-outline text-sm">
-            <i class="fa-solid fa-chevron-left text-xs mr-1"></i> 更早的评论
+            <i class="fa-solid fa-chevron-left text-xs mr-1"></i> 较新的评论
         </a>
         <?php endif; ?>
         <?php if ($cpage > 1): ?>
         <a href="<?php echo esc_url(get_comments_pagenum_link($cpage - 1)); ?>" class="btn-primary text-sm">
-            较新的评论 <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+            更早的评论 <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
         </a>
         <?php endif; ?>
     </nav>
