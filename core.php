@@ -483,3 +483,44 @@ function ztheme_get_featured_post_ids() {
     }
     return array_unique($ids);
 }
+
+// Editor QuickTags buttons (HTML/Text editor)
+add_action('after_wp_tiny_mce', 'ztheme_after_wp_tiny_mce');
+function ztheme_after_wp_tiny_mce($mce_settings) {
+?>
+<script type="text/javascript">
+QTags.addButton( 'wp_page', '分页', "<!--nextpage-->\n", "" );
+QTags.addButton( 'hr', 'MD分割线', "___\n", "" );
+QTags.addButton( 'h1', 'h1', "# ", "" );
+QTags.addButton( 'h2', 'h2', "## ", "" );
+QTags.addButton( 'h3', 'h3', "### ", "" );
+QTags.addButton( 'syntax', '贴代码', "```\n\n```", "" );
+QTags.addButton( 'nofollow', 'nofollow', "<a href = \"URL\" title = \"标题\" rel=\"nofollow\" target = \"_blank\">链接文本</a>", "" );
+QTags.addButton( 'mdimg', 'MD图像', "![]()", "" );
+QTags.addButton( 'mdurl', 'MD链接', "[]()", "" );
+</script>
+<?php
+}
+
+// Editor MCE buttons (Visual editor)
+function ztheme_add_editor_buttons($buttons) {
+    $buttons[] = 'fontselect';
+    $buttons[] = 'fontsizeselect';
+    $buttons[] = 'cleanup';
+    $buttons[] = 'styleselect';
+    $buttons[] = 'hr';
+    $buttons[] = 'del';
+    $buttons[] = 'sub';
+    $buttons[] = 'sup';
+    $buttons[] = 'copy';
+    $buttons[] = 'paste';
+    $buttons[] = 'cut';
+    $buttons[] = 'undo';
+    $buttons[] = 'image';
+    $buttons[] = 'anchor';
+    $buttons[] = 'backcolor';
+    $buttons[] = 'wp_page';
+    $buttons[] = 'charmap';
+    return $buttons;
+}
+add_filter("mce_buttons_3", "ztheme_add_editor_buttons");
