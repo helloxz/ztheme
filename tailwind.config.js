@@ -56,6 +56,15 @@ module.exports = {
             'h1, h2, h3, h4, h5, h6': {
               fontWeight: '600',
             },
+            h2: {
+              borderBottomWidth: '1px',
+              borderBottomColor: '#e2e8f0',
+              paddingBottom: '0.5em',
+              marginBottom: '1em',
+            },
+            h3: {
+              color: '#334155',
+            },
             p: {
               marginTop: '1.25em',
               marginBottom: '1.25em',
@@ -168,6 +177,12 @@ module.exports = {
           css: {
             blockquote: {
               backgroundColor: '#0f172a',
+            },
+            h2: {
+              borderBottomColor: '#334155',
+            },
+            h3: {
+              color: '#e2e8f0',
             },
             'li::marker': {
               color: '#64748b',

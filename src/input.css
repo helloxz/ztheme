@@ -70,6 +70,13 @@
     @apply text-primary-500 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20;
   }
   
+  /* Long word/URL line break handling */
+  #content {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
   /* Code block styles */
   #content pre {
     @apply bg-slate-800 dark:bg-slate-900 rounded-xl p-4 my-6 overflow-x-auto relative;
